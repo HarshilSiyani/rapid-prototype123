@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapid Prototyping Event Survey</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 1.75rem;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .rating-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .rating-container input[type="radio"] {
+            display: none;
+        }
+
+        .rating-container label {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-bottom: 0;
+        }
+
+        .rating-container input[type="radio"]:checked + label {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .rating-container label:hover {
+            background: #e0e0e0;
+        }
+
+        .rating-container input[type="radio"]:checked + label:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .rating-label {
+            margin-bottom: 10px;
+        }
+
+        .rating-scale {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        .row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .row .form-group {
+            flex: 1;
+        }
+
+        @media (max-width: 480px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .container {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rapid Prototyping Event</h1>
+        <p class="subtitle">We'd love to hear your feedback!</p>
+
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <!-- Replace YOUR_API_KEY_HERE with your Web3Forms API key -->
+            <input type="hidden" name="access_key" value="YOUR_API_KEY_HERE">
+            <input type="hidden" name="subject" value="New Survey Response - Rapid Prototyping Event">
+            <input type="hidden" name="from_name" value="Survey Form">
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" required placeholder="John">
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required placeholder="Doe">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="john@example.com">
+            </div>
+
+            <div class="form-group">
+                <label class="rating-label">How would you rate this event? (1-10)</label>
+                <div class="rating-container">
+                    <input type="radio" id="rating1" name="rating" value="1" required>
+                    <label for="rating1">1</label>
+
+                    <input type="radio" id="rating2" name="rating" value="2">
+                    <label for="rating2">2</label>
+
+                    <input type="radio" id="rating3" name="rating" value="3">
+                    <label for="rating3">3</label>
+
+                    <input type="radio" id="rating4" name="rating" value="4">
+                    <label for="rating4">4</label>
+
+                    <input type="radio" id="rating5" name="rating" value="5">
+                    <label for="rating5">5</label>
+
+                    <input type="radio" id="rating6" name="rating" value="6">
+                    <label for="rating6">6</label>
+
+                    <input type="radio" id="rating7" name="rating" value="7">
+                    <label for="rating7">7</label>
+
+                    <input type="radio" id="rating8" name="rating" value="8">
+                    <label for="rating8">8</label>
+
+                    <input type="radio" id="rating9" name="rating" value="9">
+                    <label for="rating9">9</label>
+
+                    <input type="radio" id="rating10" name="rating" value="10">
+                    <label for="rating10">10</label>
+                </div>
+                <div class="rating-scale">
+                    <span>Not great</span>
+                    <span>Amazing!</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Any additional feedback?</label>
+                <textarea id="description" name="description" placeholder="Share your thoughts about the event..."></textarea>
+            </div>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+</body>
+</html>
